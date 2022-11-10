@@ -1,0 +1,60 @@
+ [
+    {
+        "pais": "Bolivia",
+        "convArg": 0.04,
+        "convDolar": 6.84, 
+        "moneda": "Pesos bolivianos"
+   
+    },
+  
+
+    {
+        "pais": "Estados Unidos",
+        "convArg": 0.007,
+        "moneda": "Dolares"
+    },
+
+    {
+        "pais": "Canada",
+        "convArg": 0.009,
+        "moneda": "Dolares canadienses"
+
+    },
+
+    {
+        "pais": "Chile",
+        "convArg": 6.72,
+        "convDolar": 952.072, 
+        "moneda" : "Pesos chilenos"
+    },
+
+    {
+        "pais": "Brasil",
+        "convArg": 0.03,
+        "convDolar": 5.32,
+        "moneda": "Reales"
+    },
+
+    {
+        "pais": "Uruguay",
+        "convArg": 0.28,
+        "convDolar": 41.19,
+        "moneda": "Pesos uruguayos"
+    },
+
+    {
+        "pais": "Venezuela",
+        "convArg": 228.90,
+        "convDolar": 839.427,
+        "moneda": "Bolivarianos"
+    },
+
+    {
+        "pais": "Colombia",
+        "convArg": 30.85,
+        "convDolar": 4892.19,
+        "moneda": "Pesos colombianos"
+        
+    }
+
+]

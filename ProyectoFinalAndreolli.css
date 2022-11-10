@@ -1,0 +1,169 @@
+                /* Estilos */
+
+body{
+    background-color: #363848;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+#titulo{
+    width: 50%;
+    font-family: Liberation Sans;
+    font-size: 60px;
+    color: #AF8273;
+}
+
+#ingreso{
+width: 200px;
+height: 150px;
+position: relative;
+margin-left: 85%;
+margin-top: -150px;
+
+}
+
+input{
+    margin-top: 10px;
+}
+
+#boton1{
+    margin-top: 10px;
+    margin-left: 35px;
+    background-attachment: fixed;
+    background-color:darksalmon;
+}
+
+.hidden { display: none; }
+
+#contenedor{
+    width: 800px;
+    height: 300px;
+    position: relative;
+    margin-top: 10%;
+    margin-left: 300px;
+    background-color: darkseagreen;
+
+}
+
+#titulo-conversion{
+    color:#363848;
+    font-family:  Verdana, Geneva, Tahoma, sans-serif;;
+    font-size: 40px;
+    margin-top: 50px;
+    margin-left: 150px;
+    
+}
+
+#titulo-ingreso{
+    font-size: 15px;
+    text-decoration: underline;
+    color: white
+}
+
+select {
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 10px;
+    margin-left: 140px;
+    margin-bottom: 50px;
+}
+
+#formulario{
+    margin: auto;
+}
+
+#amount{
+    margin-left: 10px ;
+    font-size: 20px;
+}
+#boton2{
+    font-size: 18px;
+    background-attachment: fixed;
+    background-color:green;
+}
+
+#conversion{
+    font-size: 18px;
+    margin-top: 10px;
+    margin-left: 200px;
+    margin-bottom: 50px;
+}
+
+p{
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+/* Responsive */
+
+@media (max-width: 991.98px) {
+    #ingreso {
+      margin-left: 80% ;
+    }
+    #contenedor{
+        width: 50% ;
+        height: 300px;
+        margin: auto;
+    }
+
+
+    #titulo-conversion{
+        margin-top: 10px;
+        margin-left: 10px;
+        font-size: 25px;
+        margin-bottom: 10px;
+    }
+
+    
+    select{
+        font-size: 20px;
+        margin: auto;
+        margin-left:25px;
+    }
+
+ 
+
+
+    #conversion{
+        font-size: 10px;
+        margin: auto;
+        margin-left: 20px;
+
+    }
+    #boton2{
+        margin-top: 10px;
+        margin-left: 80px;
+    }
+
+    
+  
+  }
+
+@media (max-width: 400.98px){
+    #ingreso {
+       margin: auto;
+        margin-top: 20px;
+    }
+    #contenedor{
+        width: 100% ;
+        height: 350px;
+        margin-top: 30px;
+    }
+
+    select{
+        font-size: 15px;
+        margin: auto;
+        margin-top: 10px;
+        margin-left:15px;
+    
+    }
+    #amount{
+        margin-left: 10px ;
+        font-size: 15px;
+    }
+    #boton2{
+        font-size: 15px;
+        background-attachment: fixed;
+        background-color:green;
+    }
+
+}
