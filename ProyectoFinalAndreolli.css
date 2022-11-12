@@ -35,12 +35,32 @@ input{
 .hidden { display: none; }
 
 #contenedor{
-    width: 800px;
-    height: 300px;
+    width: 1000px;
+    height: 500px;
     position: relative;
     margin-top: 10%;
-    margin-left: 300px;
+    margin:auto;
     background-color: darkseagreen;
+
+}
+
+#salidaDeInfo{
+    margin:auto;
+    width: 400px;
+    height: 150px;
+    background-color: #363848;
+}
+
+#tituloSalida{
+    color: white;
+    margin-left: 150px;
+    padding-top: 20px;
+}
+
+#informe{
+    color: darkseagreen;;
+    padding-top: 10px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
 
 }
 
@@ -75,11 +95,13 @@ select {
     margin-left: 10px ;
     font-size: 20px;
 }
-#boton2{
+#boton-de-conversion{
     font-size: 18px;
+    margin-left: 20px;
     background-attachment: fixed;
     background-color:green;
 }
+
 
 #conversion{
     font-size: 18px;
@@ -92,6 +114,8 @@ p{
     font-size: 18px;
     margin-left: 10px;
 }
+
+
 
 /* Responsive */
 
