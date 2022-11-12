@@ -1,6 +1,103 @@
 
+                                        /   * Proyecto Final *     /
+    
+/* 
+        Nombre: Nicolas Andreolli
+*/
+                                    
+                                //$$$$$$$   Dinero Sin Fronteras    $$$$$$$$
 
-//Variables Globales
+
+ // Variables de ingreso
+ const headerIngreso = document.getElementById("ingreso");
+ const formularioDeIngreso = document.getElementById("formulario-de-ingreso");
+ 
+ const cuentas = obtenerCuentas();
+ 
+ const inputNombre = document.getElementById("nombre");
+ const inputEmail = document.getElementById("email");
+ const inputClave = document.getElementById("clave");
+ const salirSesion = document.getElementById("botonSalir");
+ 
+ // localStorage.clear()
+
+
+   
+                                //Funciones de ingreso de usuario 
+
+function obtenerCuentas(){
+    const cuentaLS = localStorage.getItem("cuentas");
+    if(cuentaLS !== null){
+        return JSON.parse(cuentaLS);
+    }
+    return [];
+}
+
+function usuarioExistente(email){
+    return !cuentas.some((el) => {
+        return el.email === email;
+    });
+}
+
+function mostrarUsuario(nombre){
+    // Limpiar el header
+    headerIngreso.innerHTML = "Bienvenido " + nombre;
+   
+    const salir = document.createElement("button");
+    salir.id = "botonSalir";
+    salir.innerText = "Salir";
+    salir.type = "button";
+  
+    headerIngreso.append(salir);
+
+}
+
+localStorage.clear()
+                                /*      Evento de registro      */
+
+ formularioDeIngreso.addEventListener("submit", (event) => {
+ 
+         event.preventDefault();
+     
+     // Obtenemos los datos del input
+     const nombre = inputNombre.value;
+     const email = inputEmail.value;
+     const clave = inputClave.value;
+ 
+              
+             //chequeo que el usuario no este registrado
+         if(usuarioExistente(email)){
+             
+             //cargo los datos en el array
+             cuentas.push({
+                 nombre : nombre,
+                 email: email,
+                 clave: clave,
+                 });
+                      
+          localStorage.setItem("cuentas", JSON.stringify(cuentas));
+            
+          alert("Ingreso correcto");
+          mostrarUsuario(nombre);
+ 
+         }else{
+             alert("Usuario existente");
+         } 
+  
+         //limpio los input
+                 nombre.value = "";
+                 email.value = "";
+                 clave.value = "";    
+            
+ 
+     });
+
+      //Evento de salir de sesion
+
+
+
+
+                                    //Variables De Conversion
 
 const Cambios = [
     "Pesos Argentinos", 
@@ -9,48 +106,43 @@ const Cambios = [
 const desc = 0.10; //Descuento por servicios
 
 
+
+function main(){
     // Creo el select paises
-    function selectCountry(listCountrys){
+
         
-        const selectCountry = document.getElementById("selectCountrys");
-        //  Creo las opciones
-        for (const paises of listCountrys){        
-            const option = document.createElement("option");
-            option.innerText = paises.pais;
-    
-            //Agrego opciones al select
-            selectCountry.append(option);
+        const selectCountrys = document.getElementById("selectCountrys");
+
+        function selectCountry(listCountrys){
+            //  Creo las opciones
+            for (const paises of listCountrys){        
+                const option = document.createElement("option");
+                option.innerText = paises.pais;
+        
+                //Agrego opciones al select
+                selectCountrys.append(option);
+            }
         }
-        
-        //Evento de seleccion de pais a mandar 
-        selectCountry.addEventListener("change",(event) =>{
+        //Agrego evento de change
+        selectCountrys.addEventListener("change",(event) =>{
             const target = event.target;
             const valor = target.value;
             // console.log(valor)
         });
+
     
-    }
-
-    function buscarPais(pais){
-        return listCountrys.find((el) =>{
-            return el.pais === pais;
-        });
-    }
 
 
-   
-    //Creo select de tipo de moneda
         const selectMoney = document.getElementById("tipo_conversion");
          //Creo las opciones
         for (const cambio of Cambios){
             const option = document.createElement("option");
             option.innerText = cambio;
-
-             //Agrego opciones al select
+            //Add options to a select
            selectMoney.append(option);
         }
         
-         //Evento de seleccion de tipo de moneda que se va a mandar
+        //Agregamos evento de change
         selectMoney.addEventListener("change", (event) => {
             const target = event.target;
             const valor = target.value;
@@ -63,21 +155,35 @@ const desc = 0.10; //Descuento por servicios
    // Creo formulario de conversion
 
 const contenedor = document.getElementById("contenedor");
+const salidaDeInfo = document.createElement("div");
+salidaDeInfo.id="salidaDeInfo";
+const tituloSalida = document.createElement("h4");
+tituloSalida.id = "tituloSalida";
+tituloSalida.innerText = "Resultado";
 const formulario = document.createElement("form");
 formulario.id= "conversion";
 const input = document.createElement("input");
 const boton = document.createElement("button");
-input.id = "amount"
-input.placeholder = "Monto"
+input.id = "amount";
+input.placeholder = "Monto";
 input.type = "number"; 
+boton.id = "boton-de-conversion";
 boton.innerText = "Convertir";
 boton.type = "submit";
 contenedor.append(formulario);
+contenedor.append(salidaDeInfo);
 formulario.append(input, boton);
+salidaDeInfo.append(tituloSalida)
+
+//Creo elemento de informe de conversion
+const p = document.createElement("p");
+p.id = "informe";
+salidaDeInfo.append(p);
+
+
+
 
 const conversion = document.getElementById("conversion");
-
-
     const enviarConversion = (event) => {
         event.preventDefault();
       
@@ -99,75 +205,59 @@ const conversion = document.getElementById("conversion");
         //     duration: 1500
         // }).showToast();
 
-        // Asigno el monto que ingreso por el input
+        
         let amount = enterAmount.value;
         //Hago la conversion y descuento el porcentaje
         let descTotal = amount * desc;
-        // Saco el descuento 
+
         let res = amount - descTotal;
 
-        //Creo elemento de informe de conversion
-        const p = document.createElement("p");
-        p.id = "informe";
-        contenedor.append(p);
-        
-        //Llamo a funcion buscar pais donde me dice si el pais seleccionado en selectCountry esta en el arreglo
-        const paises = buscarPais(selectCountry.value);
 
-        //recorro todo el arreglo
-        listCountrys.forEach(paises=> {
-            
-        //consulto si el tipo de moneda elegido en el selectMoney son pesos argentinos
+        const paises = buscarPais(selectCountrys.value);
+        const informe = document.getElementById("informe");        
+
         if(selectMoney.value === Cambios[0]){
-            //Hago la conversion del res (que es el monto menos el descuento) por la conversion de pesos arg segun el pais
             paises.convArg = (res * paises.convArg);
-            
-            //creo un elemento para mostrar la conversion 
-            const informe = document.getElementById("informe");
             informe.innerHTML = `Se van a mandar a <strong>${paises.pais}</strong> la suma de: <strong>$${paises.convArg?.toFixed(2)}</strong> ${paises.moneda}`
             paises.convArg = 0;
-
-            //muestro la ganancia
             console.log("La ganancia es: $"+ descTotal + " pesos");
-         
-            //consulto si el tipo de moneda elegido en el selectMoney son dolares
+        
         }else if(selectMoney.value === Cambios[1]){
             paises.convDolar = (res * paises.convDolar); 
-            
-            //creo un elemento para mostrar la conversion 
-            const informe = document.createElement("informe");
             informe.innerHTML = `Se van a mandar a <strong>${paises.pais}</strong> la suma de: <strong>$${paises.convDolar?.toFixed(2)}</strong> ${paises.moneda}`
             paises.convDolar = 0;
             console.log("La ganancia es: $"+ descTotal + " dolares");
         
         }else{
-            // Toastify({
-            //     text: "Ingrese un tipo de moneda",
-            //     duration: 1000
-            // }).showToast();
+            Toastify({
+                text: "Ingrese un tipo de moneda",
+                duration: 1000
+            }).showToast();
         }
-    });
-}
-conversion.addEventListener("submit", enviarConversion); 
-
-
-//declaro variable global para almacenar lo que traigo del json
-  let listCountrys;
-
-    const cargarDatos = async () => {
-       try{
-            const res = await fetch("/paises.json");
-            const data = await res.json()
-            selectCountry(data);
-            
-            listCountrys = data
-             
-
-        
-       }catch(error){
-            console.log(error);
-       }
-       }
-       
     
-       cargarDatos();
+}
+        conversion.addEventListener("submit", enviarConversion); 
+
+        function buscarPais(pais){
+            return listaPaises.find((el) =>{
+            return el.pais === pais;
+        });
+        }
+
+
+        let listaPaises;
+
+            fetch("/paises.json")
+            .then((response) => {
+                return response.json();
+            }).then((data) => {
+                listaPaises = data;
+                selectCountry(listaPaises);
+                
+                buscarPais(listaPaises)
+
+            })
+            // .catch(error)
+            // console.log(error);
+
+    }
