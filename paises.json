@@ -8,15 +8,17 @@
     },
   
 
-    {
+     {
         "pais": "Estados Unidos",
         "convArg": 0.007,
+        "convDolar": 1,
         "moneda": "Dolares"
     },
 
     {
         "pais": "Canada",
         "convArg": 0.009,
+        "convDolar": 0.75,
         "moneda": "Dolares canadienses"
 
     },
