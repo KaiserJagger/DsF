@@ -1,11 +1,11 @@
-                /* Estilos */
+                      /* Estilos */
 
 body{
     background-color: #363848;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
-#titulo{
+#logo{
     width: 50%;
     font-family: Liberation Sans;
     font-size: 60px;
@@ -21,6 +21,12 @@ margin-top: -150px;
 
 }
 
+#titulo-ingreso{
+    font-size: 15px;
+    text-decoration: underline;
+    color: rgb(216, 206, 206)
+}
+
 input{
     margin-top: 10px;
 }
@@ -34,160 +40,87 @@ input{
 
 .hidden { display: none; }
 
-#contenedor{
-    width: 1000px;
-    height: 500px;
-    position: relative;
-    margin-top: 10%;
-    margin:auto;
-    background-color: darkseagreen;
+                    /* Conversion */
 
-}
 
-#salidaDeInfo{
-    margin:auto;
-    width: 400px;
-    height: 150px;
-    background-color: #363848;
-}
-
-#tituloSalida{
-    color: white;
-    margin-left: 150px;
-    padding-top: 20px;
-}
-
-#informe{
-    color: darkseagreen;;
-    padding-top: 10px;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
-
-}
-
-#titulo-conversion{
-    color:#363848;
-    font-family:  Verdana, Geneva, Tahoma, sans-serif;;
+* {
+    box-sizing: border-box
+   }
+   
+   .titulo{
+    font-family:'Times New Roman', Times, serif;
+    color: #4e9e67;
     font-size: 40px;
-    margin-top: 50px;
-    margin-left: 150px;
-    
-}
-
-#titulo-ingreso{
-    font-size: 15px;
-    text-decoration: underline;
-    color: white
-}
-
-select {
-    font-size: 20px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-top: 10px;
-    margin-left: 140px;
-    margin-bottom: 50px;
-}
-
-#formulario{
-    margin: auto;
-}
-
-#amount{
-    margin-left: 10px ;
-    font-size: 20px;
-}
-#boton-de-conversion{
-    font-size: 18px;
-    margin-left: 20px;
-    background-attachment: fixed;
-    background-color:green;
-}
-
-
-#conversion{
-    font-size: 18px;
-    margin-top: 10px;
-    margin-left: 200px;
-    margin-bottom: 50px;
-}
-
-p{
-    font-size: 18px;
-    margin-left: 10px;
-}
-
-
-
-/* Responsive */
-
-@media (max-width: 991.98px) {
-    #ingreso {
-      margin-left: 80% ;
-    }
-    #contenedor{
-        width: 50% ;
-        height: 300px;
-        margin: auto;
-    }
-
-
-    #titulo-conversion{
-        margin-top: 10px;
-        margin-left: 10px;
-        font-size: 25px;
-        margin-bottom: 10px;
-    }
-
-    
-    select{
-        font-size: 20px;
-        margin: auto;
-        margin-left:25px;
-    }
-
+    display: flex;
+    margin-left: 390px;
+   }
  
+   .card {
+    border-radius: 30px;
+    width: 700px;
+    height: 400px;
+    display: flex;
+    margin-left: 300px ;
+    padding: 20px;
+    background-color:#3f40aa73;
+   }
+   
+   
+   .left {
+    width:150px ;
+    height: 50px;
+    margin-left: 50px;
+   }
+
+   .select1{
+    background-color: darksalmon;
+    font-size: 20px;
+   
+   }
+   
+   
+   
+   .right {
+    width:150px ;
+    height: 50px;
+    margin-left: 150px;
+    margin-right: 20px;
+   }
+   .select2{
+    font-size: 20px;
+    background-color: darksalmon;
+   }
+   
+
+   #amount{
+    background-color: darksalmon;
+    font-size:20px;
+    position: relative;
+    margin-top: 70px;
+    margin-left: -400px;
+   }
+   
+   
+   #boton-de-conversion{
+    background-color: #4e9e67;
+    font-size: 20px;
+    margin-left: 30px;
+   }
 
 
-    #conversion{
-        font-size: 10px;
-        margin: auto;
-        margin-left: 20px;
+   .info {
+    position: relative;
+    border-radius: 20px;
+    background-color: darksalmon;
+    width:300px ;
+    height: 130px;
+    margin-top:160px;
+    margin-left: -350px;
+   }
 
-    }
-    #boton2{
-        margin-top: 10px;
-        margin-left: 80px;
-    }
+   .tituloSal{
+    margin-top: 10px;
+    margin-left: 100px;
+   }
 
-    
-  
-  }
-
-@media (max-width: 400.98px){
-    #ingreso {
-       margin: auto;
-        margin-top: 20px;
-    }
-    #contenedor{
-        width: 100% ;
-        height: 350px;
-        margin-top: 30px;
-    }
-
-    select{
-        font-size: 15px;
-        margin: auto;
-        margin-top: 10px;
-        margin-left:15px;
-    
-    }
-    #amount{
-        margin-left: 10px ;
-        font-size: 15px;
-    }
-    #boton2{
-        font-size: 15px;
-        background-attachment: fixed;
-        background-color:green;
-    }
-
-}
+   
