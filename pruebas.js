@@ -1,4 +1,3 @@
-
                                         /   * Proyecto Final *     /
     
 /* 
@@ -106,8 +105,8 @@ const Cambios = [
 const desc = 0.10; //Descuento por servicios
 
 
-
-function main(){
+//Funcion de apagado
+function dsf(){
     // Creo el select paises
 
         
@@ -130,10 +129,8 @@ function main(){
             // console.log(valor)
         });
 
-    
 
-
-        const selectMoney = document.getElementById("tipo_conversion");
+        const selectMoney = document.getElementById("selectMoney");
          //Creo las opciones
         for (const cambio of Cambios){
             const option = document.createElement("option");
@@ -150,32 +147,29 @@ function main(){
     
 
         
+ // Creo formulario de conversion
+ const contenedor = document.getElementById("contenedor");
+ const formularioConversion = document.createElement("form");
+ formularioConversion.id= "conversion";
+ const input = document.createElement("input");
+ input.id = "amount";
+ input.placeholder = "Monto";
+ input.type = "number"; 
+ const boton = document.createElement("button");
+ boton.id = "boton-de-conversion";
+ boton.innerText = "Convertir";
+ boton.type = "submit";
 
-
-   // Creo formulario de conversion
-
-const contenedor = document.getElementById("contenedor");
-const salidaDeInfo = document.createElement("div");
-salidaDeInfo.id="salidaDeInfo";
-const tituloSalida = document.createElement("h4");
-tituloSalida.id = "tituloSalida";
-tituloSalida.innerText = "Resultado";
-const formulario = document.createElement("form");
-formulario.id= "conversion";
-const input = document.createElement("input");
-const boton = document.createElement("button");
-input.id = "amount";
-input.placeholder = "Monto";
-input.type = "number"; 
-boton.id = "boton-de-conversion";
-boton.innerText = "Convertir";
-boton.type = "submit";
-contenedor.append(formulario);
+ //Obtengo el id de convertidor
+ const convertidor = document.getElementById("convertidor");
+ convertidor.append(formularioConversion);
+ formularioConversion.append(input, boton);
+ 
+const salidaDeInfo = document.getElementById("salidaDeInfo")
+//agrego el div salidaDeInfo al contenedor
 contenedor.append(salidaDeInfo);
-formulario.append(input, boton);
-salidaDeInfo.append(tituloSalida)
 
-//Creo elemento de informe de conversion
+//Informe de conversion
 const p = document.createElement("p");
 p.id = "informe";
 salidaDeInfo.append(p);
@@ -218,7 +212,9 @@ const conversion = document.getElementById("conversion");
 
         if(selectMoney.value === Cambios[0]){
             paises.convArg = (res * paises.convArg);
-            informe.innerHTML = `Se van a mandar a <strong>${paises.pais}</strong> la suma de: <strong>$${paises.convArg?.toFixed(2)}</strong> ${paises.moneda}`
+            informe.innerHTML = `<strong> Destino:</strong> ${paises.pais} 
+            <br><strong>Monto $</strong> ${paises.convArg?.toFixed(2)}
+            <br><strong>Moneda:</strong> ${paises.moneda}`
             paises.convArg = 0;
             console.log("La ganancia es: $"+ descTotal + " pesos");
         
@@ -261,3 +257,7 @@ const conversion = document.getElementById("conversion");
             // console.log(error);
 
     }
+
+
+   
+dsf();
