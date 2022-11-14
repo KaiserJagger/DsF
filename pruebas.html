@@ -13,7 +13,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1 id="titulo">DsF</h1><br>
+    <h1 id="logo">DsF</h1><br>
 <header id="ingreso">
     <form id="formulario-de-ingreso">
         <p id="titulo-ingreso"> Registrarse<br>
@@ -25,23 +25,36 @@
     <p id="usuario"></p>
 </header>
 
-    
-<div id="contenedor">
-    <h3 id="titulo-conversion">Envia dinero a cualquier sitio</h3>
-    <select id="selectCountrys">
-        <option id="opciones" value="">Seleccione un pais</option> 
-       <!-- contruimos el select en js  -->
-    </select> 
-     
-    <select id="tipo_conversion"> 
-        <option value="">Seleccione moneda</option>
-         <!-- contruimos el select en js -->
-         
-        <div id="salidaDeInfo">
-        
-        </div>
 
-</div>    
+<h3 id="titulo-conversion" class="titulo">Envia dinero desde Argentina</h3>
+
+<div id="contenedor" class="card">
+
+    <div class="left">
+        <select class="select1" id="selectCountrys">
+            <option id="opciones" value="">Seleccione un pais</option> 
+           <!-- contruimos el select en js  -->
+        </select> 
+     </a>
+    </div> 
+    
+    <div class="right">
+            <select class="select2" id="selectMoney"> 
+        <option value="">$ - Seleccione moneda - $</option>
+         <!-- contruimos el select en js -->
+    </select>
+    </div>
+    <div id="convertidor" class="con"></div>
+    
+    <div id="salidaDeInfo" class="info">
+        <h4 id="tituloSalida" class="tituloSal">Resultado</h4>
+    </div>
+
+</div>
+    
+       
+      </div>
+
   
     <!-- Librerias -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
