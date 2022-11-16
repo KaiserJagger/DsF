@@ -13,7 +13,9 @@
     <title>Document</title>
 </head>
 <body>
+
     <h1 id="logo">DsF</h1><br>
+
 <header id="ingreso">
     <form id="formulario-de-ingreso">
         <p id="titulo-ingreso"> Registrarse<br>
@@ -31,7 +33,7 @@
 <div id="contenedor" class="card">
 
     <div class="left">
-        <select class="select1" id="selectCountrys">
+        <select class="select1" id="select_paises">
             <option id="opciones" value="">Seleccione un pais</option> 
            <!-- contruimos el select en js  -->
         </select> 
@@ -39,21 +41,34 @@
     </div> 
     
     <div class="right">
-            <select class="select2" id="selectMoney"> 
+            <select class="select2" id="select_moneda"> 
         <option value="">$ - Seleccione moneda - $</option>
          <!-- contruimos el select en js -->
     </select>
     </div>
+    
     <div id="convertidor" class="con"></div>
     
-    <div id="salidaDeInfo" class="info">
-        <h4 id="tituloSalida" class="tituloSal">Resultado</h4>
+    <div id="salida_info" class="info">
+        <h4 id="titulo_salida" class="tituloSal">Resultado</h4>
     </div>
+
+   
 
 </div>
     
-       
-      </div>
+<div id="historial"> 
+<table id="tabla_historial">
+    <thead id="head_conversiones">
+      
+    </thead>
+
+    <tbody id="body_conversiones">
+        
+    </tbody>
+
+</table>
+</div>
 
   
     <!-- Librerias -->
