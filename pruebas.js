@@ -38,20 +38,8 @@ function usuarioExistente(email){
     });
 }
 
-function mostrarUsuario(nombre){
-    // Limpiar el header
-    headerIngreso.innerHTML = "Bienvenido " + nombre;
-   
-    const salir = document.createElement("button");
-    salir.id = "botonSalir";
-    salir.innerText = "Salir";
-    salir.type = "button";
-  
-    headerIngreso.append(salir);
 
-}
 
-localStorage.clear()
                                 /*      Evento de registro      */
 
  formularioDeIngreso.addEventListener("submit", (event) => {
@@ -92,25 +80,52 @@ localStorage.clear()
      });
 
       //Evento de salir de sesion
-
-
+      function mostrarUsuario(nombre){
+        // Limpiar el header
+        headerIngreso.innerHTML = "Bienvenido " + nombre;
+       
+        const salir = document.createElement("button");
+        salir.id = "botonSalir";
+        salir.innerText = "Salir";
+        salir.type = "button";
+      
+        headerIngreso.append(salir);
+        
+        salir.addEventListener("click" ,(event) => {
+        event.preventDefault();
+        localStorage.clear();
+        
+        
+      });
+    
+    }
+    
+      
+    // localStorage.clear();
 
 
                                     //Variables De Conversion
-
+//Arreglo de tipos de cambio
 const Cambios = [
     "Pesos Argentinos", 
     "Dolares Estadounidenses",
 ];
-const desc = 0.10; //Descuento por servicios
+//Descuento por servicios
+const desc = 0.10; 
+
+//Precio del dolar en relacion al peso argentino
+const dolar = 162.13;
+
+ //Arreglo donde voy almacenar las conversiones
+ let historialConversiones = [];
 
 
-//Funcion de apagado
+
+//Funcion de control
 function dsf(){
-    // Creo el select paises
 
-        
-        const selectCountrys = document.getElementById("selectCountrys");
+    // Creo el select paises
+  const selectCountrys = document.getElementById("select_paises");
 
         function selectCountry(listCountrys){
             //  Creo las opciones
@@ -130,7 +145,7 @@ function dsf(){
         });
 
 
-        const selectMoney = document.getElementById("selectMoney");
+        const selectMoney = document.getElementById("select_moneda");
          //Creo las opciones
         for (const cambio of Cambios){
             const option = document.createElement("option");
@@ -144,8 +159,14 @@ function dsf(){
             const target = event.target;
             const valor = target.value;
          });
-    
 
+          //Busco si pais existe
+        function buscarPais(pais){
+            return listaPaises.find((el) =>{
+            return el.pais === pais;
+        });
+        }
+    
         
  // Creo formulario de conversion
  const contenedor = document.getElementById("contenedor");
@@ -165,7 +186,7 @@ function dsf(){
  convertidor.append(formularioConversion);
  formularioConversion.append(input, boton);
  
-const salidaDeInfo = document.getElementById("salidaDeInfo")
+const salidaDeInfo = document.getElementById("salida_info")
 //agrego el div salidaDeInfo al contenedor
 contenedor.append(salidaDeInfo);
 
@@ -185,27 +206,19 @@ const conversion = document.getElementById("conversion");
         //obtengo el monto a convertir
         const enterAmount = document.getElementById("amount");
         if (enterAmount.value.length === 0){
-            // Toastify({
-            //     text: "Ingrese un monto a mandar",
-            //     duration: 1500
-            // }).showToast();
+            Toastify({
+                text: "Ingrese un monto a mandar",
+                duration: 1500
+            }).showToast();
         }
-        
-        console.log(enterAmount.value)
-
-   
-        // Toastify({
-        //     text: "Ingrese un pais",
-        //     duration: 1500
-        // }).showToast();
-
-        
+    
         let amount = enterAmount.value;
         //Hago la conversion y descuento el porcentaje
         let descTotal = amount * desc;
-
+        //Le resto el desceunto que se le aplica por los servicios
         let res = amount - descTotal;
 
+       
 
         const paises = buscarPais(selectCountrys.value);
         const informe = document.getElementById("informe");        
@@ -215,32 +228,57 @@ const conversion = document.getElementById("conversion");
             informe.innerHTML = `<strong> Destino:</strong> ${paises.pais} 
             <br><strong>Monto $</strong> ${paises.convArg?.toFixed(2)}
             <br><strong>Moneda:</strong> ${paises.moneda}`
-            paises.convArg = 0;
+            //Agrego producto al array y luego al localStorage
+            historialConversiones.push({
+                Pais : paises.pais,
+                Monto_en_pesos : parseInt(res) + " pesos Arg",
+                Monto_convertido : paises.convArg,
+                Moneda: paises.moneda,
+            });
+
+            localStorage.setItem("historial", JSON.stringify(historialConversiones));
             console.log("La ganancia es: $"+ descTotal + " pesos");
-        
+
+
         }else if(selectMoney.value === Cambios[1]){
             paises.convDolar = (res * paises.convDolar); 
-            informe.innerHTML = `Se van a mandar a <strong>${paises.pais}</strong> la suma de: <strong>$${paises.convDolar?.toFixed(2)}</strong> ${paises.moneda}`
-            paises.convDolar = 0;
-            console.log("La ganancia es: $"+ descTotal + " dolares");
-        
+            informe.innerHTML = `<strong> Destino:</strong> ${paises.pais} 
+            <br><strong>Monto $</strong> ${paises.convDolar?.toFixed(2)}
+            <br><strong>Moneda:</strong> ${paises.moneda}`
+            //Agrego producto al array y luego al localStorage
+            historialConversiones.push({
+                Pais : paises.pais,
+                Monto_en_pesos : parseInt(res) + " dolares",
+                Moneda: paises.moneda,
+                Monto_convertido : paises.convDolar,
+                
+            });
+            
+            let convAPesos = descTotal * dolar;
+            console.log("La ganancia es: $"+ convAPesos + " pesos") ;
+
+            localStorage.setItem("historial", JSON.stringify(historialConversiones));
+            
+
         }else{
+
             Toastify({
-                text: "Ingrese un tipo de moneda",
+                text: "Ingrese pais y/o tipo de moneda ",
                 duration: 1000
             }).showToast();
+        
         }
+ 
+        //limpio las conversiones
+        paises.convArg = 0;
+        paises.convDolar = 0;
     
-}
-        conversion.addEventListener("submit", enviarConversion); 
-
-        function buscarPais(pais){
-            return listaPaises.find((el) =>{
-            return el.pais === pais;
-        });
-        }
+    }
+    conversion.addEventListener("submit", enviarConversion); 
 
 
+    
+        //Variable global de la consulta al json
         let listaPaises;
 
             fetch("/paises.json")
@@ -253,11 +291,73 @@ const conversion = document.getElementById("conversion");
                 buscarPais(listaPaises)
 
             })
-            // .catch(error)
-            // console.log(error);
-
-    }
+        
 
 
+            // --------------- Historial de Conversiones -----------------------
+
+            //Verifico si tengo conversiones en el localStorage
+            const conversionesStorage = localStorage.getItem("historial");
+
+            if(conversionesStorage !== null){
+               historialConversiones = JSON.parse(conversionesStorage);
+            }
+
+            
+
+    function renderizarTabla(historialConversiones){
+        const bodyTabla = document.getElementById("body_conversiones");
+        // bodyTabla.innerHTML = "";
+
+        //creo tabla
+        const thead = document.getElementById("head_conversiones");
+        const th1 = document.createElement("th");
+        th1.innerText= "Pais";
+        const th2 = document.createElement("th");
+        th2.innerText= "Monto";
+        const th3 = document.createElement("th");
+        th3.innerText= "Monto convertido";
+        const th4 = document.createElement("th");
+        th4.innerText= "Moneda";
+    
+        thead.append(th1);
+        thead.append(th2);
+        thead.append(th3);
+        thead.append(th4);
+
+        for(const el of historialConversiones){
+            const tr = document.createElement("tr");
+
+            const td1 = document.createElement("td");
+            td1.innerText = el.Pais;
+
+            const td2 = document.createElement("td");
+            td2.innerText = el.Monto_en_pesos;
+
+            const td3 = document.createElement("td");
+            td3.innerText = el.Monto_convertido;
+
+            const td4 = document.createElement("td");
+            td4.innerText = el.Moneda;
+
+            //Agrego al tr
+            tr.append(td1);
+            tr.append(td2);
+            tr.append(td3);
+            tr.append(td4);
+
+            //Agregar tr al body
+
+            bodyTabla.append(tr);
+        }
+
+       }
+
+        //renderizo conversiones por primera vez
+        renderizarTabla(historialConversiones);
+
+// localStorage.clear()
+   
+}
    
 dsf();
