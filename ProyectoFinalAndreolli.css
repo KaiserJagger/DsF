@@ -1,4 +1,4 @@
-                      /* Estilos */
+                  /* Estilos */
 
 body{
     background-color: #363848;
@@ -122,5 +122,28 @@ input{
     margin-top: 10px;
     margin-left: 100px;
    }
+
+   #historial{
+    width: 400px;
+    height: 200px;
+    margin-top: 100px;
+    margin-left: 400px;
+    
+   }
+
+   #tabla_historial{
+    background-color: #4e9e67;
+    border-radius: 20px;
+    width: 400px;
+    height: 100px;
+   }
+
+   #body_conversiones{
+    width: 400px;
+    height: 100px;
+    margin-top: 10px;
+
+   }
+   
 
    
